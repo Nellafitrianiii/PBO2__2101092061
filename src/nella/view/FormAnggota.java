@@ -159,6 +159,11 @@ public class FormAnggota extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblAnggota.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAnggotaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblAnggota);
 
         getContentPane().add(jScrollPane1);
@@ -264,6 +269,11 @@ public class FormAnggota extends javax.swing.JFrame {
         // TODO add your handling code here:
         controller.cari();
     }//GEN-LAST:event_btnCariActionPerformed
+
+    private void tblAnggotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAnggotaMouseClicked
+        controller.tabelKlik();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblAnggotaMouseClicked
 
     /**
      * @param args the command line arguments
