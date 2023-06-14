@@ -29,9 +29,11 @@ public class AnggotaController {
     private Connection con;
     private Koneksi koneksi;
     
+    
+    
     public AnggotaController(FormAnggota formAnggota){
         try {
-            this.formAnggota = new FormAnggota();
+            this.formAnggota = formAnggota;
             anggotaDao = new AnggotaDaoImpl();
             con = new Koneksi().getkoneksi();
         } catch (ClassNotFoundException ex) {
@@ -41,6 +43,18 @@ public class AnggotaController {
         }
     }
     
+    public void tabelKlik(){
+        try {
+            String kode = formAnggota.getTblAnggota().getValueAt(formAnggota.getTblAnggota().getSelectedRow(),0).toString();
+            anggota = anggotaDao.getAnggota(con, kode);
+            formAnggota.getTxtKodeAnggota().setText(anggota.getKodeAnggota());
+            formAnggota.getTxtNama().setText(anggota.getNamaAnggota());
+            formAnggota.getTxtAlamat().setText(anggota.getAlamat());
+            formAnggota.getCboJenisKelamin().setSelectedItem(anggota.getJenisKelamin()); 
+        } catch (Exception ex) {
+            Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void insert(){
         try {
             anggota = new Anggota ();
@@ -131,5 +145,7 @@ public class AnggotaController {
         formAnggota.getCboJenisKelamin().addItem("L");
         formAnggota.getCboJenisKelamin().addItem("P");
     }
+
+   
     
 }
