@@ -20,6 +20,7 @@ public class FormAnggota extends javax.swing.JFrame {
      * Creates new form FormAnggota
      */
     AnggotaController controller;
+    
     public FormAnggota() {
         initComponents();
         controller = new AnggotaController(this);
@@ -150,13 +151,10 @@ public class FormAnggota extends javax.swing.JFrame {
 
         tblAnggota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "kode anggota", "nama anggota", "alamat", "jenis kelamin"
             }
         ));
         tblAnggota.addMouseListener(new java.awt.event.MouseAdapter() {
