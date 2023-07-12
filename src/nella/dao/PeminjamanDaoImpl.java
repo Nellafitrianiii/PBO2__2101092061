@@ -18,15 +18,25 @@ import nella.model.Peminjaman;
 
 /**
  *
+ * 
+ * 
+ * 
+ * 
  * @author Asus
  */
+
+
+
+
 public class PeminjamanDaoImpl implements PeminjamanDao {
+
+
 
     @Override
     public void insert(Connection con, Peminjaman pinjam) throws Exception {
         String sql = "insert into peminjaman values(?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, pinjam.getKodeanggota());
+        ps.setString(1, pinjam.getKodeAnggota());
         ps.setString(2, pinjam.getKodebuku());
         ps.setString(3, pinjam.getTglpinjam());
         ps.setString(4, pinjam.getTglkembali());
@@ -36,10 +46,10 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
 
     @Override
     public void update(Connection con, Peminjaman pinjam) throws Exception {
-        String sql = "update peminjaman set tglkembali=? "+"where kodeanggota =? and kodebuku =? and tglpinjam =?";
+        String sql = "update peminjaman set tglkembali=? "+"where kodeanggota = ? and kodebuku =? and tglpinjam =?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, pinjam.getTglkembali());
-        ps.setString(2, pinjam.getKodeanggota());
+        ps.setString(2, pinjam.getKodeAnggota());
         ps.setString(3, pinjam.getKodebuku());
         ps.setString(4, pinjam.getTglpinjam());
         ps.executeUpdate();
@@ -48,9 +58,9 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
 
     @Override
     public void delete(Connection con, Peminjaman pinjam) throws Exception {
-        String sql = "delete from pinjam "+ "where kodeanggota =? and kodebuku =? and tglpinjam=?";
+        String sql = "delete from peminjaman "+ "where kodeanggota=? and kodebuku = ? and tglpinjam=?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, pinjam.getKodeanggota());
+        ps.setString(1, pinjam.getKodeAnggota());
         ps.setString(2, pinjam.getKodebuku());
         ps.setString(3, pinjam.getTglpinjam());
         ps.executeUpdate();
@@ -60,7 +70,7 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
     @Override
     public Peminjaman getPeminjaman(Connection con, String kodeanggota, String kodebuku, String tglpinjam) {
         try {
-            String sql = "select * from pinjam"+"where kodeanggota =? and kodebuku =? and tglpinjam =?";
+            String sql = "select * from peminjaman"+"where kodeanggota =? and kodebuku =? and tglpinjam =?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, kodeanggota);
             ps.setString(2, kodebuku);
@@ -69,7 +79,7 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
             Peminjaman pinjam = null;
             if(rs.next()){
                 pinjam = new Peminjaman();
-                pinjam.setKodeanggota(rs.getString(1));
+                pinjam.setKodeAnggota(rs.getString(1));
                 pinjam.setKodebuku(rs.getString(2));
                 pinjam.setTglpinjam(rs.getString(3));
                 pinjam.setTglkembali(rs.getString(4));
@@ -90,7 +100,7 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
         Peminjaman pinjam = null;
         while(rs.next()){
             pinjam = new Peminjaman();
-            pinjam.setKodeanggota(rs.getString(1));
+            pinjam.setKodeAnggota(rs.getString(1));
             pinjam.setKodebuku(rs.getString(2));
             pinjam.setTglpinjam(rs.getString(3));
             pinjam.setTglkembali(rs.getString(4));
