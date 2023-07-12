@@ -10,7 +10,7 @@ package nella.model;
  * @author Asus
  */
 public class Peminjaman {
-    private String kodeanggota;
+    private String kodeAnggota;
     private String kodebuku;
     private String tglpinjam;
     private String tglkembali;
@@ -20,18 +20,22 @@ public class Peminjaman {
     }
 
     public Peminjaman(String kodeanggota, String kodebuku, String tglpinjam, String tglkembali) {
-        this.kodeanggota = kodeanggota;
+        this.kodeAnggota = kodeAnggota;
         this.kodebuku = kodebuku;
         this.tglpinjam = tglpinjam;
         this.tglkembali = tglkembali;
     }
 
-    public String getKodeanggota() {
-        return kodeanggota;
+    public String getKodeAnggota() {
+        return kodeAnggota;
     }
 
-    public void setKodeanggota(String kodeanggota) {
-        this.kodeanggota = kodeanggota;
+    public void setKodeAnggota(String kodeAnggota) {
+        this.kodeAnggota = kodeAnggota;
+    }
+
+    public String getGetKodeanggota() {
+        return getKodeanggota;
     }
 
     public String getKodebuku() {
