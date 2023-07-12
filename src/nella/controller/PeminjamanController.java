@@ -78,7 +78,7 @@ public class PeminjamanController {
     public void insert(){
         try {
             pinjam = new Peminjaman();
-            pinjam.setKodeanggota(formPinjam.getCboKodeanggota().getSelectedItem().toString().split("-")[0]);
+            pinjam.setKodeAnggota(formPinjam.getCboKodeanggota().getSelectedItem().toString().split("-")[0]);
             pinjam.setKodebuku(formPinjam.getCboKodebuku().getSelectedItem().toString());
             pinjam.setTglpinjam(formPinjam.getTxtTglpinjam().getText());
             pinjam.setTglkembali(formPinjam.getTxtTglkembali().getText());
@@ -97,7 +97,7 @@ public class PeminjamanController {
         pinjam = pinjamDao.getPeminjaman(con, kodeanggota, kodebuku, tglpinjam);
         if(pinjam!=null){
             try {
-                Anggota anggota = angggotaDao.getAnggota(con,pinjam.getKodeanggota());
+                Anggota anggota = angggotaDao.getAnggota(con,pinjam.getKodeAnggota());
                 formPinjam.getCboKodeanggota().setSelectedItem(anggota.getKodeAnggota()+"-"+anggota.getNamaAnggota());
                 formPinjam.getCboKodebuku().setSelectedItem(pinjam.getKodebuku());
                 formPinjam.getTxtTglpinjam().setText(pinjam.getTglpinjam());
@@ -111,7 +111,7 @@ public class PeminjamanController {
     public void update(){
         try {
             pinjam = new Peminjaman();
-            pinjam.setKodeanggota(formPinjam.getCboKodeanggota().getSelectedItem().toString().split("-")[0]);
+            pinjam.setKodeAnggota(formPinjam.getCboKodeanggota().getSelectedItem().toString().split("-")[0]);
             pinjam.setKodebuku(formPinjam.getCboKodebuku().getSelectedItem().toString());
             pinjam.setTglpinjam(formPinjam.getTxtTglpinjam().getText());
             pinjam.setTglkembali(formPinjam.getTxtTglkembali().getText());
@@ -142,7 +142,7 @@ public class PeminjamanController {
             List<Peminjaman> list = pinjamDao.getAllPeminjaman(con);
             for (Peminjaman pinjam1 : list){
                 Object[] row = {
-                    pinjam1.getKodeanggota(),
+                    pinjam1.getKodeAnggota(),
                     pinjam1.getKodebuku(),
                     pinjam1.getTglpinjam(),
                     pinjam1.getTglkembali()
