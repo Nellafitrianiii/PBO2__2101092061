@@ -27,7 +27,8 @@ public class AnggotaController {
     private Anggota anggota;
     private AnggotaDao anggotaDao;
     private Connection con;
-    private Koneksi koneksi;
+    private Koneksi k;
+    
     
     
     
@@ -35,7 +36,8 @@ public class AnggotaController {
         try {
             this.formAnggota = formAnggota;
             anggotaDao = new AnggotaDaoImpl();
-            con = new Koneksi().getkoneksi();
+            k = new Koneksi();
+            con = k.getkoneksi();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -43,18 +45,6 @@ public class AnggotaController {
         }
     }
     
-    public void tabelKlik(){
-        try {
-            String kode = formAnggota.getTblAnggota().getValueAt(formAnggota.getTblAnggota().getSelectedRow(),0).toString();
-            anggota = anggotaDao.getAnggota(con, kode);
-            formAnggota.getTxtKodeAnggota().setText(anggota.getKodeAnggota());
-            formAnggota.getTxtNama().setText(anggota.getNamaAnggota());
-            formAnggota.getTxtAlamat().setText(anggota.getAlamat());
-            formAnggota.getCboJenisKelamin().setSelectedItem(anggota.getJenisKelamin()); 
-        } catch (Exception ex) {
-            Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     public void insert(){
         try {
             anggota = new Anggota ();
@@ -100,6 +90,19 @@ public class AnggotaController {
         }
     }
     
+    public void tabelKlik(){
+        try {
+            String kode = formAnggota.getTblAnggota().getValueAt(formAnggota.getTblAnggota().getSelectedRow(), 0).toString();
+            anggota = anggotaDao.getAnggota(con, kode);
+            formAnggota.getTxtKodeAnggota().setText(anggota.getKodeAnggota());
+            formAnggota.getTxtNama().setText(anggota.getNamaAnggota());
+            formAnggota.getTxtAlamat().setText(anggota.getAlamat());
+            formAnggota.getCboJenisKelamin().setSelectedItem(anggota.getJenisKelamin());
+        } catch (Exception ex) {
+            Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     public void cari(){
         try {
             String kode = formAnggota.getTxtKodeAnggota().getText();
@@ -140,6 +143,7 @@ public class AnggotaController {
         formAnggota.getTxtAlamat().setText("");
     }
     
+
     public void isiCboJenisKelamin(){
         formAnggota.getCboJenisKelamin().removeAllItems();
         formAnggota.getCboJenisKelamin().addItem("L");
