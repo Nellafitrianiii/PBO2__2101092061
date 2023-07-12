@@ -31,11 +31,10 @@ public class AnggotaDaoImpl implements AnggotaDao {
 
     @Override
     public void update(Connection con, Anggota anggota) throws Exception {
-         String sql = "Update anggota set namaanggota=? alamat =?," + "jenis kelamin=? where kodeanggota=?";
+         String sql = "Update anggota set namaanggota=? alamat =?," + " jeniskelamin=? where kodeanggota=?";
          PreparedStatement ps = con.prepareStatement(sql);
-         ps.setString(1,anggota.getKodeAnggota());
-         ps.setString(2,anggota.getNamaAnggota());
-         ps.setString(3,anggota.getAlamat());
+         ps.setString(1,anggota.getNamaAnggota());
+         ps.setString(2,anggota.getAlamat());
          ps.setString(3,anggota.getJenisKelamin());
          ps.setString(4,anggota.getKodeAnggota());
          ps.executeUpdate();
@@ -53,9 +52,9 @@ public class AnggotaDaoImpl implements AnggotaDao {
 
     @Override
     public Anggota getAnggota(Connection con, String kode) throws Exception {
-        String sql = "select *from "+ "where kodeanggota = ?";
+        String sql = "select * from "+ "where kodeanggota=?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1,kode);
+        ps.setString(1, kode);
         ResultSet rs = ps.executeQuery();
         Anggota anggota = null;
         if(rs.next()){
